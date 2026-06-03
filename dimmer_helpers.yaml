@@ -1,0 +1,306 @@
+input_select:
+
+  # The following sets of 3 helpers are needed for the Dimmer RGB CCT blueprint
+  # One set of these helpers is required for each instance of the dimmer
+  # blueprint that you configure. There are five sets of helpers defined here.
+  # If you are using more than 5 instances, copy and paste a new set of these 
+  # helpers and change the number at the end. Keep using the same number for 
+  # all helpers in each set.
+  #
+  # Dimmer 1
+  #
+  dimmer_blueprint_mode_1:
+    name: Mode dimmer 1
+    options:
+      - cct
+      - rgb
+    initial: cct
+  dimmer_blueprint_cct_1:
+    name: CCT parameter dimmer 1
+    options:
+      - brightness
+      - temperature
+    initial: brightness
+  dimmer_blueprint_rgb_1:
+    name: RGB parameter dimmer 1
+    options:
+      - hue
+      - saturation
+      - brightness
+    initial: hue
+  #
+  # Dimmer 2
+  #
+  dimmer_blueprint_mode_2:
+    name: Mode dimmer 2
+    options:
+      - cct
+      - rgb
+    initial: cct
+  dimmer_blueprint_cct_2:
+    name: CCT parameter dimmer 2
+    options:
+      - brightness
+      - temperature
+    initial: brightness
+  dimmer_blueprint_rgb_2:
+    name: RGB parameter dimmer 2
+    options:
+      - hue
+      - saturation
+      - brightness
+    initial: hue
+  #
+  # Dimmer 3
+  #
+  dimmer_blueprint_mode_3:
+    name: Mode dimmer 3
+    options:
+      - cct
+      - rgb
+    initial: cct
+  dimmer_blueprint_cct_3:
+    name: CCT parameter dimmer 3
+    options:
+      - brightness
+      - temperature
+    initial: brightness
+  dimmer_blueprint_rgb_3:
+    name: RGB parameter dimmer 3
+    options:
+      - hue
+      - saturation
+      - brightness
+    initial: hue
+
+  #
+  # Dimmer 4
+  #
+  dimmer_blueprint_mode_4:
+    name: Mode dimmer 4
+    options:
+      - cct
+      - rgb
+    initial: cct
+  dimmer_blueprint_cct_4:
+    name: CCT parameter dimmer 4
+    options:
+      - brightness
+      - temperature
+    initial: brightness
+  dimmer_blueprint_rgb_4:
+    name: RGB parameter dimmer 4
+    options:
+      - hue
+      - saturation
+      - brightness
+    initial: hue
+  #
+  # Dimmer 5
+  #
+  dimmer_blueprint_mode_5:
+    name: Mode dimmer 5
+    options:
+      - cct
+      - rgb
+    initial: cct
+  dimmer_blueprint_cct_5:
+    name: CCT parameter dimmer 5
+    options:
+      - brightness
+      - temperature
+    initial: brightness
+  dimmer_blueprint_rgb_5:
+    name: RGB parameter dimmer 5
+    options:
+      - hue
+      - saturation
+      - brightness
+    initial: hue
+
+input_text:
+
+  # The following sets of 5 helpers are needed for the Dimmer RGB CCT blueprint
+  # One set of these helpers is required for each instance of the dimmer
+  # blueprint that you configure. There are five sets of helpers defined here.
+  # If you are using more than 5 instances, copy and paste a new set of these 
+  # helpers and change the number at the end. Keep using the same number for 
+  # all helpers in each set.
+  #
+  # Dimmer 1
+  #
+  dimmer_blueprint_cct_brightness_1:
+    name: CCT last brightness value dimmer 1
+    min: 1
+    max: 10
+  dimmer_blueprint_cct_temperature_1:
+    name: CCT last temperature value dimmer 1
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_hue_1:
+    name: RGB last hue value dimmer 1
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_saturation_1:
+    name: RGB last saturation value dimmer 1
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_brightness_1:
+    name: RGB last brightness value dimmer 1
+    min: 1
+    max: 10
+  #
+  # Dimmer 2
+  #
+  dimmer_blueprint_cct_brightness_2:
+    name: CCT last brightness value dimmer 2
+    min: 1
+    max: 10
+  dimmer_blueprint_cct_temperature_2:
+    name: CCT last temperature value dimmer 2
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_hue_2:
+    name: RGB last hue value dimmer 2
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_saturation_2:
+    name: RGB last saturation value dimmer 2
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_brightness_2:
+    name: RGB last brightness value dimmer 2
+    min: 1
+    max: 10
+  #
+  # Dimmer 3
+  #
+  dimmer_blueprint_cct_brightness_3:
+    name: CCT last brightness value dimmer 3
+    min: 1
+    max: 10
+  dimmer_blueprint_cct_temperature_3:
+    name: CCT last temperature value dimmer 3
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_hue_3:
+    name: RGB last hue value dimmer 3
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_saturation_3:
+    name: RGB last saturation value dimmer 3
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_brightness_3:
+    name: RGB last brightness value dimmer 3
+    min: 1
+    max: 10
+  #
+  # Dimmer 4
+  #
+  dimmer_blueprint_cct_brightness_4:
+    name: CCT last brightness value dimmer 4
+    min: 1
+    max: 10
+  dimmer_blueprint_cct_temperature_4:
+    name: CCT last temperature value dimmer 4
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_hue_4:
+    name: RGB last hue value dimmer 4
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_saturation_4:
+    name: RGB last saturation value dimmer 4
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_brightness_4:
+    name: RGB last brightness value dimmer 4
+    min: 1
+    max: 10
+  #
+  # Dimmer 5
+  #
+  dimmer_blueprint_cct_brightness_5:
+    name: CCT last brightness value dimmer 5
+    min: 1
+    max: 10
+  dimmer_blueprint_cct_temperature_5:
+    name: CCT last temperature value dimmer 5
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_hue_5:
+    name: RGB last hue value dimmer 5
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_saturation_5:
+    name: RGB last saturation value dimmer 5
+    min: 1
+    max: 10
+  dimmer_blueprint_rgb_brightness_5:
+    name: RGB last brightness value dimmer 5
+    min: 1
+    max: 10
+
+# The following helpers are needed for the Dimmer RGB CCT blueprint
+# The template sensors define the "action" text that the dimmer returns when the user
+# operates something on the smart knob. If your smart knob doesn't work with the
+# default template sensor, it is probably because the output text from your smart knob doesn't
+# fully match what is defined in the default. If this is the case,
+# you can create your own custom template sensor using the ones below as examples.
+#
+# To make a custom template sensor
+#     - Copy and paste an entire sensor
+#     - Update the name of the sensor to match your smart knob
+#     - Update the unique_id to match your smart knob.  You must keep the text prefix "dimmer_blueprint_model_" 
+#         otherwise your new template sensor won't show up in the list when you configure the blueprint.
+#     - Update the action_map section with the text from your smart knob. The next section has details
+#         on how to do this
+#     - Home assistant doesn't know about your new template sensor until the yaml files are reloaded. To reload
+#         the yaml files, go to Settings -> Developer tools -> YAML. Then click to reload "All YAML configuration".
+#     - Now your new template sensor will turn up in the list of available dimmer types when you configure the blueprint.
+#
+# To work out which words are produced by your device
+#     - Open Zigbee2MQTT in Home Assistant
+#     - Open the details page for your smart knob
+#     - Change to the "State" tab
+#     - Operate the button in each of the ways listed in the template below. Single click, double click etc.
+#     - Take note of the words that appear beside the "action" parameter
+#     - Enter these words into your custom sensor template
+#         Important:
+#         All the smart knobs that I have used have two modes.  The text changes depending on which mode
+#         is active.  That is why there are two entries for most of the actions.  You must record the text
+#         for both modes and enter them in the template.  For all smart knobs that I have used, you simply
+#         triple-click the button to toggle modes. So, while you are recording text, triple-click your
+#         button and run through all of the actions again.  Note any new text and add it to the template sensor.
+#
+# One of these template sensors is defined for each type of dimmer
+#
+template:
+  - sensor:
+      - name: "Dimmer default"
+        unique_id: dimmer_blueprint_model_default
+        state: "active"
+        attributes:
+          action_map: >
+            {{ {
+              'single_click': ['toggle', 'single'],
+              'double_click': ['double'],
+              'rotate_left': ['brightness_step_down', 'rotate_left'],
+              'rotate_right': ['brightness_step_up', 'rotate_right'],
+              'long_press': ['hue_move', 'hold']
+            } | tojson }}
+
+  - sensor:
+      - name: "Dimmer model Moes ZG-101ZD"
+        unique_id: dimmer_blueprint_model_moes_zg_101zd
+        state: "active"
+        attributes:
+          action_map: >
+            {{ {
+              'single_click': ['toggle', 'single'],
+              'double_click': ['double'],
+              'rotate_left': ['brightness_step_down', 'rotate_left'],
+              'rotate_right': ['brightness_step_up', 'rotate_right'],
+              'long_press': ['hue_move', 'hold']
+            } | tojson }}
