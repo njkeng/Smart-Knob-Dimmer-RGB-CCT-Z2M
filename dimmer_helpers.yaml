@@ -1,11 +1,50 @@
+# This file contains the definitions for helpers required by the automation blueprint
+# Control RGB CCT light with Zigbee Smart Knob
+#
+# To make use of this file:
+# 1/ Create a new folder in the root folder that contains your config.yaml
+# 2/ Copy this file into you new packages folder
+# 3/ Edit your config.yaml so that you can add package definition files.  These
+#   files are added into config.yaml whenever home assistant loads config.yaml
+#   Copy and paste the following lines into your config.yaml
+#   (Make sure you remove the leading indentation after you paste these lines in.
+#   The first two lines need to be up against the left.)
+#
+# # Custom packages for my stuff
+# homeassistant:
+#   packages:
+#     dimmer_helpers: !include packages/dimmer_helpers.yaml
+#
+# 3/ Reload all home assistant configuration.  Two steps are needed.
+#   The first step checks for errors. 
+#     Go to settings -> developer tools -> check configuration
+#   And if there are no errors, reload all YAML
+#     Go to settings -> developer tools -> all YAML configuration
+#
+
 input_select:
+  # This helper allows selection of a unique number for each dimmer configured using the 
+  # blueprint. If you extend the number of dimmers by adding more helpers, make sure you 
+  # also add more options to this list so that you can select your new dimmer numbers.
+  # Initially, this helper defines enough helpers for five dimmers.
+  #
+  dimmer_number:
+    name: Dimmer number
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    initial: 1
+    icon: mdi:knob
 
   # The following sets of 3 helpers are needed for the Dimmer RGB CCT blueprint
-  # One set of these helpers is required for each instance of the dimmer
-  # blueprint that you configure. There are five sets of helpers defined here.
+  # One set of thee helpers is required for each instance of the dimmer
+  # blueprint that you configure. There are 5 sets of helpers defined here.
   # If you are using more than 5 instances, copy and paste a new set of these 
-  # helpers and change the number at the end. Keep using the same number for 
-  # all helpers in each set.
+  # helpers and change the number suffix at the end. Keep using the same number 
+  # suffix for each of the 3 helpers in each set.
   #
   # Dimmer 1
   #
@@ -122,10 +161,10 @@ input_text:
 
   # The following sets of 5 helpers are needed for the Dimmer RGB CCT blueprint
   # One set of these helpers is required for each instance of the dimmer
-  # blueprint that you configure. There are five sets of helpers defined here.
+  # blueprint that you configure. There are 5 sets of helpers defined here.
   # If you are using more than 5 instances, copy and paste a new set of these 
-  # helpers and change the number at the end. Keep using the same number for 
-  # all helpers in each set.
+  # helpers and change the number suffix at the end. Keep using the same number 
+  # suffix for each of the 5 helpers in each set.
   #
   # Dimmer 1
   #
@@ -270,7 +309,7 @@ input_text:
 #         Important:
 #         All the smart knobs that I have used have two modes.  The text changes depending on which mode
 #         is active.  That is why there are two entries for most of the actions.  You must record the text
-#         for both modes and enter them in the template.  For all smart knobs that I have used, you simply
+#         for all available modes and enter them in the template.  For all smart knobs that I have used, you simply
 #         triple-click the button to toggle modes. So, while you are recording text, triple-click your
 #         button and run through all of the actions again.  Note any new text and add it to the template sensor.
 #
