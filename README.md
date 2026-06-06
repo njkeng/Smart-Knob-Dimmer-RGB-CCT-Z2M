@@ -42,6 +42,8 @@ When the dimmer changes between RGB and CCT modes, the blueprint stores the curr
 - CCT to RGB: Stores current values for brightness and color temperature
 - RGB to CCT: Stores current values for hue, saturation and brightness
 
+- When changing from CCT mode to RGB mode, the blueprint selects the RGB hue parameter for adjustment, regardless of the previous parameter selected.
+- When changing from RGB mode to CCT mode, the blueprint selects the CCT brightness parameter for adjustment, regardless of the previous parameter selected.
 
 
 ## Installation
@@ -75,7 +77,10 @@ We are going to install a helper definition file as a package in Home Assistant.
 https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M/blob/5fabf4777775226bd4c90bb7873543e147bf60a1/dimmer_helpers.yaml
 Use the ![Copy raw file](./images/copy-16.svg) *Copy raw file* function to copy the contents of the file. Paste the contents into your *dimmer_helpers.yaml*. The file is saved automatically.
 
-1. Edit your *configuration.yaml* so that your installation can use package files.  Skip this step if you already have Home Assistant configured to use packages. Package files are dynamically loaded into *configuration.yaml* whenever home assistant reads *configuration.yaml*. Copy and paste the following lines into your *configuration.yaml*
+1. The next step involves editing your *configuration.yaml* so that your installation can use package.  This file is critical to your whole Home Assistant installation.  It is always a good idea to make a backup of your *configuration.yaml* before you edit the active file. Right-click *configuration.yaml* and select Copy.  Press Ctrl-V to paste.  You will now have a backup named *configuration copy.yaml*.
+
+1. Edit your *configuration.yaml* to allow use of package files.  Skip this step if you already have Home Assistant configured to use packages. Package files are dynamically loaded into *configuration.yaml* whenever home assistant reads *configuration.yaml*. Copy and paste the following lines into your *configuration.yaml*
+
 ```yaml
 # Custom packages for my stuff
 homeassistant:
@@ -83,8 +88,7 @@ homeassistant:
         dimmer_helpers: !include packages/dimmer_helpers.yaml
 ```
 6. Reload all home assistant configuration.  Two steps are needed.
-    1. Checks for errors. 
-    1. Go to settings → developer tools →  YAML tab and click *check configuration*.
+    1. Check for errors. Go to settings → developer tools →  YAML tab and click *check configuration*.
     1. If errors are found, fix them.  Issues with YAML files tend to be to do with indentation.
     1. If there are no errors, reload all YAML.  Go to settings → developer tools → YAML tab and click *all YAML configuration*.  Alternatively, restart *Home Assistant* if you wish.
 
