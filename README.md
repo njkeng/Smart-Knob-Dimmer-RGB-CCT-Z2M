@@ -1,6 +1,125 @@
-Blueprint to easily configure a **Zigbee Smart Knob** to control one or several light entities when 
-integrated into Home Assistant using **Zigbee2MQTT**.
+# Smart knob light dimmer
+
+## Introduction
+
+This blueprint turns your Z2M smart knob into a full-control dimmer for RGB CCT light bulbs. 
+
+- With the bulb in *CCT* (white color temperature) mode, you can adjust brightness and color temperature.  
+
+- With the bulb in RGB mode, you can adjust hue, saturation and brightness.
+
+To use this blueprint, you need the following devices:
+- A smart knob communicating with Home Assistant using Z2M (Zigbee2MQTT). 
+- One or more light devices configured in Home Assistant.  This blueprint is best used with lights that have both RGB and CCT modes.  If your light has RGB only, CCT only or is simply an on/off device, this blueprint will work without errors.  The light will simply ignore any commands that it can't use.
+
+## Operation
+
+The actions performed by the dimmer are:
+- Short press: Toggle light On/Off
+- Long press (3 seconds): Change between CCT mode and RGB mode
+- Double press: Change the parameter to adjust
+    - In CCT mode, toggles between adjustment of brightness and color temperature parameters
+    - In RGB mode, cycles between adjustment of hue, saturation and brightness parameters
+- Turn left/right: Adjust the value of the active parameter. The 
+adjustment knob works best when turned slowly.
+
+When the dimmer changes between RGB and CCT modes, the blueprint stores the current parameter values prior to changing modes. The next time the mode changes, the previous values are restored.
+- CCT to RGB: Stores current values for brightness and color temperature
+- RGB to CCT: Stores current values for hue, saturation and brightness
 
 
-You can configure any light to be controlled by this blueprint.  If a light doesn't support a
-particular control function, the command is simply ignored by the light.
+
+## Installation
+
+### Step 1 - The blueprint
+The simplest way to import the blueprint is to click this button:
+
+[![Open your Home Assistant instance and show the blueprint import dialog with a specific blueprint pre-filled.](https://my.home-assistant.io/badges/blueprint_import.svg)](https://my.home-assistant.io/redirect/blueprint_import/?blueprint_url=https%3A%2F%2Fgithub.com%2Fnjkeng%2FSmart-Knob-Dimmer-RGB-CCT-Z2M%2Fblob%2F5fabf4777775226bd4c90bb7873543e147bf60a1%2Fdimmer_RGB_CCT.yaml)
+
+
+Alternatively, to import the Blueprint manually:
+
+1. Copy this URL        
+https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M/blob/5fabf4777775226bd4c90bb7873543e147bf60a1/dimmer_RGB_CCT.yaml
+1.  Go to Home Assistant → Configuration → Automations & Scenes → Blueprints and click on "Import Blueprint" button in the bottom right.
+1.  Paste the URL and click on "Preview Blueprint"
+1.  Click on "Import Blueprint"
+
+### Step 2 - The helpers
+
+This blueprint relies on helpers to store the current state of the dimmer control and to retain RGB and CCT setting values.  These helpers need to be defined in your Home Assistant configuration section. 
+
+We are going to install a helper definition file as a package in Home Assistant.  This can't be done automatically.  Here are the manual steps required to create the helper definition file.
+
+1. Open your *configuration.yaml* file for editing. I strongly recommend using the editor *Studio Code Server*.  If you don't already have this installed, install it from the Home Assistant app store.  Go to Home Assistant → Settings → Apps and click on Install App.  Find *Studio Code Server* and follow the directions to install it.
+
+1. Locate the root folder named *CONFIG* which contains your *configuration.yaml* file. Create a new folder in the root folder and name it *packages*. 
+1. Create a new file in the *packages* folder.  Name the file *dimmer_helpers.yaml*.  
+
+1. Open *dimmer_helpers.yaml* for editing. Copy the contents of the helpers file from Github. Open the file using this link
+https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M/blob/5fabf4777775226bd4c90bb7873543e147bf60a1/dimmer_helpers.yaml
+Use the ![Copy raw file](./images/copy-16.svg) *Copy raw file* function to copy the contents of the file. Paste the contents into your *dimmer_helpers.yaml*. The file is saved automatically.
+
+1. Edit your *configuration.yaml* so that your installation can use package files.  Skip this step if you already have Home Assistant configured to use packages. Package files are dynamically loaded into *configuration.yaml* whenever home assistant reads *configuration.yaml*. Copy and paste the following lines into your *configuration.yaml*
+```yaml
+# Custom packages for my stuff
+homeassistant:
+    packages:
+        dimmer_helpers: !include packages/dimmer_helpers.yaml
+```
+5. Reload all home assistant configuration.  Two steps are needed.
+    1. Checks for errors. 
+    1. Go to settings → developer tools →  YAML tab and click *check configuration*.
+    1. If errors are found, fix them.  Issues with YAML files tend to be to do with indentation.
+    1. If there are no errors, reload all YAML.  Go to settings → developer tools → YAML tab and click *all YAML configuration*.  Alternatively, restart *Home Assistant* if you wish.
+
+## Configuration
+
+For most installations, configuration is fairly basic.
+
+### Essential configuration
+1. The dimmer
+
+    Your dimmer needs to be a *Zigbee* type and be configured in Home Assistant through *Zigbee2MQTT*. Enter the parent MQTT topic of the smart knob. Typically the last part will be the friendly name of your device. To get the MQTT topic for your device, go to *Zigbee2MQTT* and open the details page for your Smart Knob.  Copy the text for MQTT and paste it in here. It should look something like *zigbee2mqtt/My Smart Knob*.
+
+2. Lights
+
+    Select the light or lights that you wish to control with this dimmer. The type of light doesn't matter.  This blueprint fully controls RGB CCT lights, but it will control any light and make use of whatever functionality the light has. RGB alone is fine.  CCT alone is fine.  Simple ON / OFF is fine.  The light will simply ignore commands that it can't use.
+
+    The dimmer can control multiple lights simultaneously.  This is intended for rooms with more than one light installed.
+
+3. Helper
+
+    Select a different helper number for each dimmer that is configured using this blueprint. Each dimmer needs a unique number to avoid unintentionally altering the parameters of some other dimmer. The *dimmer_helpers.yaml* file provided with this blueprint defines helpers for up to 5 dimmers.  If more than 5 dimmers are needed, the *dimmer_helpers.yaml* file needs to be edited to add more helpers.  Detailed instructions on how to do this are contained with the file.
+
+### Optional configuration
+
+The blueprint will typically operate satisfactorily using the default settings.  Check the settings in this section if your dimmer is not operating correctly or if you want to adjust the responsiveness of the controls.
+
+1. Tuning
+
+    Settings for how quickly knob rotations change the light's parameters.
+
+1. Action text
+
+    When any controls are operated on the smart knob it sends *"action"* text to Home Assistant.  This section defines what operation the dimmer should perform when some *"action"* text is received.  
+
+    If your smart knob doesn't work with the
+    default values, it is probably because the output text from your smart knob doesn't
+    fully match what is defined in the default values. If this is the case,
+    you can add your own custom values to the list.
+    
+    To work out what "action" test is produced by your device
+    - Open Zigbee2MQTT in Home Assistant
+    - Open the details page for your smart knob
+    - Change to the "State" tab
+    - Operate the button in each of the ways listed in the blueprint. Single click, double click etc.
+    - Take note of the text that appears next to the "action" parameter
+    - Enter the text into the blueprint, choosing the section to match the action you want the dimmer to take
+
+    *Important:* All the smart knobs that I have used have at least two modes.  The "action" text changes depending on which mode is active.  That is why there are two entries for most of the actions.  You must record the text for all available modes and enter them in the template.  
+
+    Check the documentation for your smart knob to learn how to change modes.
+    For instance, for the smart knob used for development, triple-clicking the button toggles it's modes. So, while you are recording text, triple-click your button or otherwise change modes and run through all of the actions again.  Take note of any new text and add it to the desired field.
+
+    If you make additions, there is no need to delete redundant text entries.  The blueprint simply runs through all action text and checks for a match. No match, no action.
