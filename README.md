@@ -67,7 +67,7 @@ homeassistant:
     packages:
         dimmer_helpers: !include packages/dimmer_helpers.yaml
 ```
-5. Reload all home assistant configuration.  Two steps are needed.
+6. Reload all home assistant configuration.  Two steps are needed.
     1. Checks for errors. 
     1. Go to settings → developer tools →  YAML tab and click *check configuration*.
     1. If errors are found, fix them.  Issues with YAML files tend to be to do with indentation.
