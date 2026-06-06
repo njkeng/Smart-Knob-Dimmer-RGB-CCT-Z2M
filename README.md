@@ -2,15 +2,30 @@
 
 ## Introduction
 
-This blueprint turns your Z2M smart knob into a full-control dimmer for RGB CCT light bulbs. 
+This blueprint turns your Z2M smart knob into a full-control dimmer for RGB CCT light. 
 
-- With the bulb in *CCT* (white color temperature) mode, you can adjust brightness and color temperature.  
+- With the light in *CCT* (white color temperature) mode, you can adjust brightness and color temperature.  
 
-- With the bulb in RGB mode, you can adjust hue, saturation and brightness.
+- With the light in RGB mode, you can adjust hue, saturation and brightness.
 
 To use this blueprint, you need the following devices:
-- A smart knob communicating with Home Assistant using Z2M (Zigbee2MQTT). 
-- One or more light devices configured in Home Assistant.  This blueprint is best used with lights that have both RGB and CCT modes.  If your light has RGB only, CCT only or is simply an on/off device, this blueprint will work without errors.  The light will simply ignore any commands that it can't use.
+- A smart knob communicating with Home Assistant using Z2M (Zigbee2MQTT). I have developed and tested this blueprint using one specific device. However, I am confident that any Z2M Smart Knob device can be used. I have read as many brand-specific blueprints as I can find and the output from the knobs is almost identical across all of them. (Maybe it's in a Zigbee spec somewhere?) If you happen to have a Smart Knob that is different, the blueprint has a simple procedure for adapting the blueprint settings for your device.
+
+- One or more light devices configured in Home Assistant.  This blueprint is best used with lights that have both RGB and CCT modes.  If your light has RGB only, CCT only, brightness only or is simply an on/off device, this blueprint will work without errors.  The light will simply ignore any commands that it can't use.
+
+    *Note:* If you are going to mix devices with different capabilities, put the one with the most functions first.  Otherwise the blueprint may do something like trying to read a hue value from a lamp that is CCT only. This will not produce errors, but it will give you confusing results. The blueprint uses the first device in the list as the reference source for all of the RGB+CCT values.  With a simpler device, these fields still exist but their values will not change. The effect on the blueprint will be that it is unable to alter that value for any of the lights in the list.
+
+## Development devices
+
+This blueprint was developed using generic brand Smart Knob TS004F. Zigbee2MQTT automatically recognized the Smart Knob as Moes ZG-101ZD. Link to the device:
+
+https://www.aliexpress.com/item/1005008917041951.html
+
+The blueprint has been tested on these lights:
+- Arlec Grid Connect GLD322HA RGB+CCT on Tuya WiFi
+- AliExpress Zigbee RGB+CCT light model TS0505B_1
+- Three different generic brand AliExpress RGB+CCT Tuya wifi lights
+- Ikea STOFTMOLN ceiling/wall lamp WW24. This lamp has brightness adjustment only. No color temp. No RGB.
 
 ## Operation
 
@@ -123,3 +138,9 @@ The blueprint will typically operate satisfactorily using the default settings. 
     For instance, for the smart knob used for development, triple-clicking the button toggles it's modes. So, while you are recording text, triple-click your button or otherwise change modes and run through all of the actions again.  Take note of any new text and add it to the desired field.
 
     If you make additions, there is no need to delete redundant text entries.  The blueprint simply runs through all action text and checks for a match. No match, no action.
+
+## Thanks
+
+This blueprint is inspired by smirnowegor's blueprint for CCT control 
+
+https://community.home-assistant.io/t/zigbee2mqtt-control-light-entity-including-press-turn-with-tuya-moes-smart-knob-ers-10tzbvk-aa-v1-1/787779/33

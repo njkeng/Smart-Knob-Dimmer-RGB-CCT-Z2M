@@ -15,7 +15,7 @@ blueprint:
     https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M
 
 
-    Extended from smirnowegor's blueprint for CCT control 
+    This blueprint is inspired by smirnowegor's blueprint for CCT control 
 
     https://community.home-assistant.io/t/zigbee2mqtt-control-light-entity-including-press-turn-with-tuya-moes-smart-knob-ers-10tzbvk-aa-v1-1/787779/33
 
@@ -63,6 +63,7 @@ blueprint:
       - Arlec Grid Connect GLD322HA on Tuya WiFi
       - AliExpress Zigbee RGB+CCT light model TS0505B_1
       - Three different generic brand AliExpress RGB CCT Tuya wifi bulbs
+      - STOFTMOLN ceiling/wall lamp WW24. This lamp has brightness adjustment only.
     </details>
 
   source_url: https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M/blob/6e7191cc1fcf452b0e97b4cc9a1c0991e6692752/dimmer_RGB_CCT.yaml
