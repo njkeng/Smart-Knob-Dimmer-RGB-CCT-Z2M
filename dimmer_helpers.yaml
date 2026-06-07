@@ -16,15 +16,15 @@
 #     dimmer_helpers: !include packages/dimmer_helpers.yaml
 #
 # 3/ Reload all home assistant configuration.  Two steps are needed.
-#   The first step checks for errors. 
+#   The first step checks for errors.
 #     Go to settings -> developer tools -> check configuration
 #   And if there are no errors, reload all YAML
 #     Go to settings -> developer tools -> all YAML configuration
 #
 
 input_select:
-  # This helper allows selection of a unique number for each dimmer configured using the 
-  # blueprint. If you extend the number of dimmers by adding more helpers, make sure you 
+  # This helper allows selection of a unique number for each dimmer configured using the
+  # blueprint. If you extend the number of dimmers by adding more helpers, make sure you
   # also add more options to this list so that you can select your new dimmer numbers.
   # Initially, this helper defines enough helpers for five dimmers.
   #
@@ -42,8 +42,8 @@ input_select:
   # The following sets of 3 helpers are needed for the Dimmer RGB CCT blueprint
   # One set of thee helpers is required for each instance of the dimmer
   # blueprint that you configure. There are 5 sets of helpers defined here.
-  # If you are using more than 5 instances, copy and paste a new set of these 
-  # helpers and change the number suffix at the end. Keep using the same number 
+  # If you are using more than 5 instances, copy and paste a new set of these
+  # helpers and change the number suffix at the end. Keep using the same number
   # suffix for each of the 3 helpers in each set.
   #
   # Dimmer 1
@@ -158,12 +158,11 @@ input_select:
     initial: hue
 
 input_text:
-
   # The following sets of 5 helpers are needed for the Dimmer RGB CCT blueprint
   # One set of these helpers is required for each instance of the dimmer
   # blueprint that you configure. There are 5 sets of helpers defined here.
-  # If you are using more than 5 instances, copy and paste a new set of these 
-  # helpers and change the number suffix at the end. Keep using the same number 
+  # If you are using more than 5 instances, copy and paste a new set of these
+  # helpers and change the number suffix at the end. Keep using the same number
   # suffix for each of the 5 helpers in each set.
   #
   # Dimmer 1
@@ -280,66 +279,3 @@ input_text:
     name: RGB last brightness value dimmer 5
     min: 1
     max: 10
-
-# The following helpers are needed for the Dimmer RGB CCT blueprint
-# The template sensors define the "action" text that the dimmer returns when the user
-# operates something on the smart knob. If your smart knob doesn't work with the
-# default template sensor, it is probably because the output text from your smart knob doesn't
-# fully match what is defined in the default. If this is the case,
-# you can create your own custom template sensor using the ones below as examples.
-#
-# To make a custom template sensor
-#     - Copy and paste an entire sensor
-#     - Update the name of the sensor to match your smart knob
-#     - Update the unique_id to match your smart knob.  You must keep the text prefix "dimmer_blueprint_model_" 
-#         otherwise your new template sensor won't show up in the list when you configure the blueprint.
-#     - Update the action_map section with the text from your smart knob. The next section has details
-#         on how to do this
-#     - Home assistant doesn't know about your new template sensor until the yaml files are reloaded. To reload
-#         the yaml files, go to Settings -> Developer tools -> YAML. Then click to reload "All YAML configuration".
-#     - Now your new template sensor will turn up in the list of available dimmer types when you configure the blueprint.
-#
-# To work out which words are produced by your device
-#     - Open Zigbee2MQTT in Home Assistant
-#     - Open the details page for your smart knob
-#     - Change to the "State" tab
-#     - Operate the button in each of the ways listed in the template below. Single click, double click etc.
-#     - Take note of the words that appear beside the "action" parameter
-#     - Enter these words into your custom sensor template
-#         Important:
-#         All the smart knobs that I have used have two modes.  The text changes depending on which mode
-#         is active.  That is why there are two entries for most of the actions.  You must record the text
-#         for all available modes and enter them in the template.  For all smart knobs that I have used, you simply
-#         triple-click the button to toggle modes. So, while you are recording text, triple-click your
-#         button and run through all of the actions again.  Note any new text and add it to the template sensor.
-#
-# One of these template sensors is defined for each type of dimmer
-#
-template:
-  - sensor:
-      - name: "Dimmer default"
-        unique_id: dimmer_blueprint_model_default
-        state: "active"
-        attributes:
-          action_map: >
-            {{ {
-              'single_click': ['toggle', 'single'],
-              'double_click': ['double'],
-              'rotate_left': ['brightness_step_down', 'rotate_left'],
-              'rotate_right': ['brightness_step_up', 'rotate_right'],
-              'long_press': ['hue_move', 'hold']
-            } | tojson }}
-
-  - sensor:
-      - name: "Dimmer model Moes ZG-101ZD"
-        unique_id: dimmer_blueprint_model_moes_zg_101zd
-        state: "active"
-        attributes:
-          action_map: >
-            {{ {
-              'single_click': ['toggle', 'single'],
-              'double_click': ['double'],
-              'rotate_left': ['brightness_step_down', 'rotate_left'],
-              'rotate_right': ['brightness_step_up', 'rotate_right'],
-              'long_press': ['hue_move', 'hold']
-            } | tojson }}

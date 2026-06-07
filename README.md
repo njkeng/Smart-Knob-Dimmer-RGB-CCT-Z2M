@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This blueprint turns your Z2M smart knob into a full-control dimmer for RGB CCT light. 
+This blueprint turns your Z2M smart knob into a full-control dimmer for RGB CCT lights. 
 
-- With the light in *CCT* (white color temperature) mode, you can adjust brightness and color temperature.  
+- With the dimmer in *CCT* (white color temperature) mode, you can adjust brightness and color temperature.  
 
-- With the light in RGB mode, you can adjust hue, saturation and brightness.
+- With the dimmer in RGB mode, you can adjust hue, saturation and brightness.
 
 To use this blueprint, you need the following devices:
 - A smart knob communicating with Home Assistant using Z2M (Zigbee2MQTT). I have developed and tested this blueprint using one specific device. However, I am confident that any Z2M Smart Knob device can be used. I have read as many brand-specific blueprints as I can find and the output from the knobs is almost identical across all of them. (Maybe it's in a Zigbee spec somewhere?) If you happen to have a Smart Knob that is different, the blueprint has a simple procedure for adapting the blueprint settings for your device.
@@ -75,7 +75,9 @@ We are going to install a helper definition file as a package in Home Assistant.
 
 1. Open *dimmer_helpers.yaml* for editing. Copy the contents of the helpers file from Github. Open the file using this link
 https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M/blob/5fabf4777775226bd4c90bb7873543e147bf60a1/dimmer_helpers.yaml
-Use the ![Copy raw file](./images/copy-16.svg) *Copy raw file* function to copy the contents of the file. Paste the contents into your *dimmer_helpers.yaml*. The file is saved automatically.
+
+
+    Use the *Copy raw file* ⧉ function to copy the contents of the file. Paste the contents into your *dimmer_helpers.yaml*. The file is saved automatically.
 
 1. The next step involves editing your *configuration.yaml* so that your installation can use package.  This file is critical to your whole Home Assistant installation.  It is always a good idea to make a backup of your *configuration.yaml* before you edit the active file. Right-click *configuration.yaml* and select Copy.  Press Ctrl-V to paste.  You will now have a backup named *configuration copy.yaml*.
 
