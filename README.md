@@ -128,7 +128,7 @@ The blueprint will typically operate satisfactorily using the default settings. 
     fully match what is defined in the default values. If this is the case,
     you can add your own custom values to the list.
     
-    To work out what "action" test is produced by your device
+    To work out what "action" text is produced by your device
     - Open Zigbee2MQTT in Home Assistant
     - Open the details page for your smart knob
     - Change to the "State" tab
