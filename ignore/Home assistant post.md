@@ -160,7 +160,7 @@ The blueprint will typically operate satisfactorily using the default settings. 
 
 ## YAML configuration
 
-The directions on Blueprints Exchange say to include the full YAML configuration here.  Including the config makes the post too long and the forum refuses to create the psot.  So instad, please get the configuration from Github here:
+The directions on Blueprints Exchange say to include the full YAML configuration here.  Including the config makes the post too long and the forum refuses to create the post.  So instead, please get the configuration from Github here:
 
 https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M
 
