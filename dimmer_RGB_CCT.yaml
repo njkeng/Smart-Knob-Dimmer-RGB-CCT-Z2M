@@ -10,7 +10,8 @@ blueprint:
     You can configure any light to be controlled by this blueprint.  If a light doesn't support a
     particular control function, the command is simply ignored by the light.
 
-    Detailed instructions for installation are in the Github repository here:
+    
+    Helpers must be created for this blueprint to operate.  You must follow the installation procedure detailed in the Github repository
 
     https://github.com/njkeng/Smart-Knob-Dimmer-RGB-CCT-Z2M
 
